@@ -44,6 +44,24 @@ impl Matrix {
         }
     }
 
+    pub fn empty() -> Matrix {
+        Matrix {
+            value: vec![]
+        }
+    }
+
+    pub fn zeros(&mut self, shape: (usize, usize)) {
+        println!("({} {})", shape.0, shape.1);
+        self.value = vec![vec![0; shape.1]; shape.0]
+    }
+
+    pub fn randoms(&mut self, shape: (usize, usize)) {
+        self.value = vec![vec![0; shape.1]; shape.0];
+        for row in 0..shape.0 {
+            self.value[row] = (0..shape.1).map(|_| rand::thread_rng().gen_range(1..10)).collect();
+        }
+    }
+
     pub fn shape(&self) -> (usize, usize) {
         // assuming the vector will be evenly sized
         let row = self.value.len();
@@ -53,7 +71,6 @@ impl Matrix {
         }
         return (0, 0);
     }
-
 
     pub fn transpose_vec(&self) -> (bool, Matrix) {
         let row = self.value.len();
@@ -90,7 +107,6 @@ impl Matrix {
             return (true, Matrix::new(&ans));
         }
     }
-
 
     pub fn print_vec(&self) {
         if self.value.len() == 0 {
