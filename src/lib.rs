@@ -33,6 +33,93 @@ pub fn guessing_game() {
     println!("The secret number is: {secret_number}");
 }
 
+pub struct Matrix {
+    value: Vec<Vec<i32>>,
+}
+
+impl Matrix {
+    pub fn new(value: &Vec<Vec<i32>>) -> Matrix {
+        Matrix {
+           value: value.to_vec()
+        }
+    }
+
+    pub fn shape(&self) -> (usize, usize) {
+        // assuming the vector will be evenly sized
+        let row = self.value.len();
+        if row > 0 {
+            let col: usize = self.value[0].len();
+            return (row, col);
+        }
+        return (0, 0);
+    }
+
+
+    pub fn transpose_vec(&self) -> (bool, Matrix) {
+        let row = self.value.len();
+        if row == 0 {
+            return (true, Matrix::new(&self.value));
+        } else {
+            let col = self.value[0].len();
+            for vec in &self.value {
+                if vec.len() != col {
+                    return (false, Matrix::new(&self.value));
+                }
+            }
+            let mut ans: Vec<Vec<i32>> = vec![vec![0; row]; col];
+            for i in 0..row {
+                for j in 0..col {
+                    if j < row && i < col {
+                        ans[i][j] = self.value[j][i];
+                        ans[j][i] = self.value[i][j];
+                    }
+                    if j >= col {
+                        ans[i][j] = self.value[j][i];
+                    }
+                    if j >= row {
+                        ans[j][i] = self.value[i][j]
+                    }
+                    if i >= row {
+                        ans[j][i] = self.value[i][j];
+                    }
+                    if i >= col {
+                        ans[j][i] = self.value[i][j];
+                    }
+                }
+            }
+            return (true, Matrix::new(&ans));
+        }
+    }
+
+
+    pub fn print_vec(&self) {
+        if self.value.len() == 0 {
+            println!("Vector is empty");
+        } else {
+            let rows = self.value.len();
+            let first = self.value[0].len();
+            let mut good = true;
+            for i in 0..rows {
+                if self.value[i].len() != first {
+                    println!("Vector is not evenly sized");
+                    good = false;
+                    break;
+                }
+            }
+            if good {
+                println!("Vector of size: ({}, {})", self.value.len(), self.value[0].len());   
+                for vect in &self.value {
+                    print!("|");
+                    for val in vect {
+                        print!(" {}", val);
+                    }
+                    println!(" |");
+                }
+            }
+        }
+    }
+}
+
 pub struct Library {
     books: Vec<Book>,
 }
