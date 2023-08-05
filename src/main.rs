@@ -48,7 +48,8 @@ fn main() {
    // transposed.print_vec();
 
    let mut a_mtrx = Matrix::empty();
-   a_mtrx.randoms((7, 15));
+   a_mtrx.randoms((7, 2000000));
+   // a_mtrx.zeros((7,2000000));
    a_mtrx.print_vec();
    // let m2: Vec<Vec<i32>> = vec![vec![0; 3]; 4];
    // print_vec(&m1);

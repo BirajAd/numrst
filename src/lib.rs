@@ -1,4 +1,4 @@
-use std::io;
+use std::{io, vec};
 use std::cmp::Ordering;
 use rand::Rng;
 
@@ -108,28 +108,55 @@ impl Matrix {
         }
     }
 
+    fn print_single_vec(&self, vect: &Vec<i32>) {
+        let length = vect.len();
+        print!("|");
+        if length > 10 {
+            for ind in 0..5 {
+                print!(" {}", vect[ind]);
+            }
+            print!(", ... ,");
+            for ind in length-5..length {
+                print!(" {}", vect[ind]);
+            }
+        } else {
+            for val in vect {
+                print!(" {}", val);
+            }
+        }
+        println!(" |");
+    }
+
     pub fn print_vec(&self) {
         if self.value.len() == 0 {
             println!("Vector is empty");
         } else {
-            let rows = self.value.len();
-            let first = self.value[0].len();
-            let mut good = true;
-            for i in 0..rows {
-                if self.value[i].len() != first {
-                    println!("Vector is not evenly sized");
-                    good = false;
-                    break;
-                }
-            }
+            // let rows = self.value.len();
+            // let first = self.value[0].len();
+            let good = true;
+            // for i in 0..rows {
+                // if self.value[i].len() != first {
+                    // println!("Vector is not evenly sized");
+                    // good = false;
+                    // break;
+                // }
+            // }
             if good {
-                println!("Vector of size: ({}, {})", self.value.len(), self.value[0].len());   
-                for vect in &self.value {
-                    print!("|");
-                    for val in vect {
-                        print!(" {}", val);
+                let rows: usize = self.value.len();
+                let columns: usize = self.value[0].len();
+                println!("Vector of size: ({}, {})", rows, columns);   
+                if rows < 7 {
+                    for vect in &self.value {
+                        self.print_single_vec(vect);
                     }
-                    println!(" |");
+                } else {
+                    for ind in 0..3 {
+                        self.print_single_vec(&self.value[ind]);
+                    }
+                    print!("...,\n");
+                    for ind in rows-3..rows {
+                        self.print_single_vec(&self.value[ind]);
+                    }
                 }
             }
         }
