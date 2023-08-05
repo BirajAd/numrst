@@ -38,7 +38,13 @@ pub struct Matrix {
 }
 
 impl Matrix {
-    pub fn new(value: &Vec<Vec<i32>>) -> Matrix {
+    pub fn new() -> Matrix {
+        Matrix {
+            value: Vec::new()
+        }
+    }
+
+    pub fn from(value: &Vec<Vec<i32>>) -> Matrix {
         Matrix {
            value: value.to_vec()
         }
@@ -75,12 +81,12 @@ impl Matrix {
     pub fn transpose_vec(&self) -> (bool, Matrix) {
         let row = self.value.len();
         if row == 0 {
-            return (true, Matrix::new(&self.value));
+            return (true, Matrix::from(&self.value));
         } else {
             let col = self.value[0].len();
             for vec in &self.value {
                 if vec.len() != col {
-                    return (false, Matrix::new(&self.value));
+                    return (false, Matrix::from(&self.value));
                 }
             }
             let mut ans: Vec<Vec<i32>> = vec![vec![0; row]; col];
@@ -104,7 +110,7 @@ impl Matrix {
                     }
                 }
             }
-            return (true, Matrix::new(&ans));
+            return (true, Matrix::from(&ans));
         }
     }
 
