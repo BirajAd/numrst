@@ -3,7 +3,8 @@
 // use start_rust::guessing_game;
 // use start_rust::Library;
 // use start_rust::Book;
-use start_rust::Matrix;
+mod matrix;
+use matrix::Matrix;
 use rand::Rng;
 
 // #[warn(dead_code)]
