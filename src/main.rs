@@ -4,8 +4,10 @@
 // use start_rust::Library;
 // use start_rust::Book;
 mod matrix;
+mod library;
 use matrix::Matrix;
-use rand::Rng;
+use library::{ Library, Book };
+// use std::env;
 
 // #[warn(dead_code)]
 fn print_vec(vector: &Vec<Vec<i32>>) {
@@ -44,8 +46,9 @@ fn main() {
       vec![ 2, 3, 8, 6 ],
       vec![ 7, 0, 1, 2 ]
    ];
+   // let args: Vec<String> = env::args().collect();
 
-   let a_mtrx = Matrix::randoms((7,2000000));
+   let a_mtrx = Matrix::zeros((7,2000000));
    // a_mtrx.transpose_vec();
    // a_mtrx.zeros((7,2000000));
    a_mtrx.print_vec();
@@ -53,9 +56,9 @@ fn main() {
    // print_vec(&m1);
 
    // guessing_game();
-   // let mut library = Library::new();
-   // library.add_book(Book::new("My book", 2030));
-   // library.add_book(Book::new("Your book", 2020));
+   let mut library = Library::new();
+   library.add_book(Book::new("My book", 2030));
+   library.add_book(Book::new("Your book", 2020));
    // println!("{}", library.is_empty());
-   // library.list_books();
+   library.list_books();
 }
