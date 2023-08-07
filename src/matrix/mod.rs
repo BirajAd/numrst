@@ -33,9 +33,12 @@ impl Matrix {
         };
     }
 
-    pub fn zeros(&mut self, shape: (usize, usize)) {
+    pub fn zeros(shape: (usize, usize)) -> Matrix {
         println!("({} {})", shape.0, shape.1);
-        self.value = vec![vec![0; shape.1]; shape.0]
+        let temp = vec![vec![0; shape.1]; shape.0];
+        return Matrix {
+            value: temp
+        }
     }
 
     pub fn shape(&self) -> (usize, usize) {

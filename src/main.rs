@@ -44,27 +44,14 @@ fn main() {
       vec![ 2, 3, 8, 6 ],
       vec![ 7, 0, 1, 2 ]
    ];
-   // let mtrx = Matrix::new(&m1);
-   // mtrx.print_vec();
-   // let (_st, transposed) = mtrx.transpose_vec();
-   // transposed.print_vec();
 
-   let a_mtrx = Matrix::randoms((7,200000));
+   let a_mtrx = Matrix::randoms((7,2000000));
+   // a_mtrx.transpose_vec();
    // a_mtrx.zeros((7,2000000));
    a_mtrx.print_vec();
    // let m2: Vec<Vec<i32>> = vec![vec![0; 3]; 4];
    // print_vec(&m1);
-   // let (status, res) = transpose_vec(&m1);
-   // if status {
-      // print_vec(&res);
-   // }
 
-   // books.push(30);
-   // let midpoint = books.len() / 2;
-   // println!("Mid value is: {}, size is: {}", books[midpoint], books.len());
-   // for book in &books {
-      // println!("book: {book}");
-   // }
    // guessing_game();
    // let mut library = Library::new();
    // library.add_book(Book::new("My book", 2030));
