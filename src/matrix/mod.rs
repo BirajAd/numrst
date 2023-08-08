@@ -1,7 +1,7 @@
 use rand::Rng;
 
 pub struct Matrix {
-    value: Vec<Vec<i32>>,
+    value: Vec<Vec<f32>>,
 }
 
 impl Matrix {
@@ -11,7 +11,7 @@ impl Matrix {
         }
     }
 
-    pub fn from(value: &Vec<Vec<i32>>) -> Matrix {
+    pub fn from(value: &Vec<Vec<f32>>) -> Matrix {
         Matrix {
            value: value.to_vec()
         }
@@ -24,9 +24,9 @@ impl Matrix {
     }
 
     pub fn randoms(shape: (usize, usize)) -> Matrix {
-        let mut temp = vec![vec![0; shape.1]; shape.0];
+        let mut temp = vec![vec![0.0; shape.1]; shape.0];
         for row in 0..shape.0 {
-            temp[row] = (0..shape.1).map(|_| rand::thread_rng().gen_range(1..10)).collect();
+            temp[row] = (0..shape.1).map(|_| rand::thread_rng().gen_range(10.0..100.0)).collect();
         }
         return Matrix {
             value: temp
@@ -35,7 +35,7 @@ impl Matrix {
 
     pub fn zeros(shape: (usize, usize)) -> Matrix {
         println!("({} {})", shape.0, shape.1);
-        let temp = vec![vec![0; shape.1]; shape.0];
+        let temp = vec![vec![0.0; shape.1]; shape.0];
         return Matrix {
             value: temp
         }
@@ -62,7 +62,7 @@ impl Matrix {
                     return (false, Matrix::from(&self.value));
                 }
             }
-            let mut ans: Vec<Vec<i32>> = vec![vec![0; row]; col];
+            let mut ans: Vec<Vec<f32>> = vec![vec![0.0; row]; col];
             for i in 0..row {
                 for j in 0..col {
                     if j < row && i < col {
@@ -87,7 +87,7 @@ impl Matrix {
         }
     }
 
-    fn print_single_vec(&self, vect: &Vec<i32>) {
+    fn print_single_vec(&self, vect: &Vec<f32>) {
         let length = vect.len();
         print!("|");
         if length > 10 {
