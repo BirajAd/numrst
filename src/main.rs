@@ -39,6 +39,7 @@ fn print_vec(vector: &Vec<Vec<i32>>) {
 }
 
 fn main() {
+   use std::time::Instant;
    // let mut books: Vec<i32> = vec![10, 20];
    let _m1: Vec<Vec<f32>> = vec![
       vec![ 1.0, 2.0, 3.0, 4.0 ],
@@ -49,7 +50,10 @@ fn main() {
    ];
    // let args: Vec<String> = env::args().collect();
 
-   let a_mtrx = Matrix::randoms((7,2000000));
+   let now = Instant::now();
+   let a_mtrx = Matrix::randoms((7,200_000));
+   let elapsed = now.elapsed();
+   println!("Elapsed: {:.2?}", elapsed);
    // let text = String::from("my name is biraj adhikari.");
    // for word in text.split_whitespace() {
       // println!("{word}");

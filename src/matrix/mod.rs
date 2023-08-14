@@ -92,15 +92,15 @@ impl Matrix {
         print!("|");
         if length > 10 {
             for ind in 0..5 {
-                print!(" {}", vect[ind]);
+                print!(" {:.4?}", vect[ind]);
             }
             print!(", ... ,");
             for ind in length-5..length {
-                print!(" {}", vect[ind]);
+                print!(" {:.4?}", vect[ind]);
             }
         } else {
             for val in vect {
-                print!(" {}", val);
+                print!(" {:.4?}", val);
             }
         }
         println!(" |");
