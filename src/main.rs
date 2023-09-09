@@ -51,7 +51,7 @@ fn main() {
    // let args: Vec<String> = env::args().collect();
 
    let now = Instant::now();
-   let a_mtrx = Matrix::randoms((7,200_000));
+   let a_mtrx = Matrix::randoms((7,20_000_000));
    let elapsed = now.elapsed();
    println!("Elapsed: {:.2?}", elapsed);
    // let text = String::from("my name is biraj adhikari.");

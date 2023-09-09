@@ -1,4 +1,5 @@
 use rand::Rng;
+use rayon::prelude::*;
 
 pub struct Matrix {
     value: Vec<Vec<f32>>,
@@ -24,9 +25,13 @@ impl Matrix {
     }
 
     pub fn randoms(shape: (usize, usize)) -> Matrix {
+        // initialize vector with given shape and fill it with 0's
         let mut temp = vec![vec![0.0; shape.1]; shape.0];
         for row in 0..shape.0 {
-            temp[row] = (0..shape.1).map(|_| rand::thread_rng().gen_range(10.0..100.0)).collect();
+            temp[row] = (0..shape.1)
+                .into_par_iter()
+                .map(|_| rand::thread_rng()
+                .gen_range(0.0..1.0)).collect();
         }
         return Matrix {
             value: temp
